@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add event</title>
+</head>
+<body>
+	<div>
+		<h2>Add event</h2>
+		<form action="" th:action="@{/save-event}" method="post"
+			th:object="${event}">
+			<div>
+				<label>Title</label> <input type="text" th:field="*{title}"
+					placeholder="Enter event title" required />
+			</div>
+			<div>
+				<label>description</label>
+				<textarea rows="3" cols="" th:field="*{description}"
+					placeholder="Enter description" required></textarea>
+			</div>
+			<div>
+				<label>category</label> <input type="text" th:field="*{category}"
+					placeholder="Enter Category" required>
+			</div>
+			<div>
+				<label>available seats</label> <input type="number"
+					th:field="*{availableSeats}" required>
+			</div>
+
+			<button type="submit">add event</button>
+		</form>
+	</div>
+
+</body>
+</html>

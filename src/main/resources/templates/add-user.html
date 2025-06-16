@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+    <script type="text/javascript">
+        function addEvents(events) {
+            const container = document.getElementById('event-container');
+            const index = container.children.length;
+
+            const row = document.createElement('div');
+            row.innerHTML = `
+            <div>
+                <select name="events[${index}].id">
+                    <option value=""></option>
+
+                </select>
+            </div>
+            <div>
+                <button type="button" onclick="removeEvents(this)">Remove</button>
+            </div>
+            `;
+            container.appendChild(row);
+        }
+
+        function removeEvents(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+    </script>
+</head>
+<body>
+
+<h2>Add new user</h2>
+
+<form action="" th:action="@{/save-user}" method="post" th:object="${user}">
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" required>
+    <label>Email:</label>
+    <input type="text" th:field="*{email}" required>
+    <label>Role:</label>
+    <input type="text" th:field="*{role}" required>
+
+    <div>
+        <div id="event-container"></div>
+        <button type="button" onclick="addEvents('${eventList}')">Add Event</button>
+    </div>
+</form>
+
+</body>
+</html>

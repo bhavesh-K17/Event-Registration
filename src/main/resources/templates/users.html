@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>All users</title>
+</head>
+<body>
+<div>
+<a href="/user/add">Add user</a>
+<a href="/user/add-event">Add event</a>
+</div>
+<div>
+<form action=""th:action="@{/users}" method = "get">
+<label> search by id</label>
+<input type="text" placeholder="Enter user id" name="id"/>
+<button type="submit">search</button>
+</form>
+</div>
+<!-- dispaly all events -->
+<div th:each="user:${users}">
+<div>
+<p><strong>Name:</strong> <span th:text="${users.name}"></span></p>
+<h6 >Events</h6>
+<ul>
+<li th:each ="event: ${user.eventList}" th:text="${eventList.name+'-'+eventList.location"></li>
+</ul>
+<div>
+<a th:href ="@{'/users/edit'+${user.id}}">edit</a>
+<a th:href ="@{'/users/delete'+${user.id}}" onclick="return confirm('are you sure')">delete</a>
+</div>
+</div>
+
+</div>
+</body>
+</html>
